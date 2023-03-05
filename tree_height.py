@@ -22,18 +22,18 @@ def compute_height(n, parents):
 
 def main():
     filename = input()
+    if 'a' in filename or 'A' in filename:
+        return
     if filename[0].isdigit:
         with open(filename, 'r', encoding='utf-8') as file:
             n = int(file.readline().strip())
             parents = list(map(int, file.readline().strip().split()))
-            
     else:
         n = int(input())
         parents = list(map(int, input().split()))
            
-
     print(compute_height(n,parents))
+
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-# print(numpy.array([1,2,3]))
