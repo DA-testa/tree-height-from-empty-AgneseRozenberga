@@ -22,13 +22,15 @@ def compute_height(n, parents):
 
 def main():
     filename = input()
-    if filename[0] == 'i':
-        n = int(input())
-        parents = list(map(int, input().split()))
-    else:
-        with open(filename, 'r') as file:
+    if filename[0].isdigit:
+        with open(filename, 'r', encoding='utf-8') as file:
             n = int(file.readline().strip())
             parents = list(map(int, file.readline().strip().split()))
+            
+    else:
+        n = int(input())
+        parents = list(map(int, input().split()))
+           
 
     print(compute_height(n,parents))
 sys.setrecursionlimit(10**7)  # max depth of recursion
