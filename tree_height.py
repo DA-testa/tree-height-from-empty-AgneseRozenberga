@@ -2,32 +2,37 @@
 
 import sys
 import threading
-import numpy
-
-
+import numpy as np
 def compute_height(n, parents):
-    # Write this function
-    max_height = 0
-    # Your code here
-    return max_height
+    
+    piramida ={}
+    for x in range(n):
+        if parents[x] == -1:
+            root = x
+        else:
+            if parents[x] not in piramida:
+                piramida[parents[x]] = []
+            piramida[parents[x]].append(x)
 
+    def augstums(nodes):
+        if nodes not in piramida:
+            return 1
+        else:
+            return 1 + np.max(augstums(pamats) for pamats in piramida[nodes])
+    return augstums(root)
 
 def main():
-    # implement input form keyboard and from files
-    
-    # let user input file name to use, don't allow file names with letter a
-    # account for github input inprecision
-    
-    # input number of elements
-    # input values in one variable, separate with space, split these values in an array
-    # call the function and output it's result
-    pass
+    filename = input()
+    if filename[0] == 'i':
+        n = int(input())
+        parents = list(map(int, input().split()))
+    else:
+        with open(filename, 'r') as file:
+            n = int(file.readline().strip())
+            parents = list(map(int, file.readline().strip().split()))
 
-# In Python, the default limit on recursion depth is rather low,
-# so raise it here for this problem. Note that to take advantage
-# of bigger stack, we have to launch the computation in a new thread.
+    print(compute_height(n,parents))
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-main()
 # print(numpy.array([1,2,3]))
