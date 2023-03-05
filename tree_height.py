@@ -3,8 +3,7 @@
 import sys
 import threading
 import numpy as np
-def compute_height(n, parents):
-    
+def compute_height(n, parents):    
     piramida ={}
     for x in range(n):
         if parents[x] == -1:
@@ -18,7 +17,7 @@ def compute_height(n, parents):
         if nodes not in piramida:
             return 1
         else:
-            return 1 + np.max(augstums(pamats) for pamats in piramida[nodes])
+            return 1 + max(augstums(pamats) for pamats in piramida[nodes])
     return augstums(root)
 
 def main():
