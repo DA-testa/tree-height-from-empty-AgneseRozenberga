@@ -1,9 +1,9 @@
 # python3
-
 import sys
 import threading
-import numpy as np
-def compute_height(n, parents):    
+#import numpy as np
+
+def compute_height(n, parents):  
     piramida ={}
     for x in range(n):
         if parents[x] == -1:
@@ -24,14 +24,13 @@ def main():
     filename = input()
     if 'a' in filename or 'A' in filename:
         return
-    if filename[0].isdigit:
+    if filename[0].isdigit():
         with open(filename, 'r', encoding='utf-8') as file:
             n = int(file.readline().strip())
             parents = list(map(int, file.readline().strip().split()))
     else:
         n = int(input())
         parents = list(map(int, input().split()))
-           
     print(compute_height(n,parents))
 
 sys.setrecursionlimit(10**7)  # max depth of recursion
