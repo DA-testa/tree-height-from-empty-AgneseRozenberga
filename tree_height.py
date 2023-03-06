@@ -36,10 +36,11 @@ def main():
             n = int(input())
             parents = list(map(int, input().split()))
         print(compute_height(n,parents))
+        if n < 1 or n > 105:
+            return
     except EOFError:
         return 1
-    except Exception as ex:
-        return 1
+
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
