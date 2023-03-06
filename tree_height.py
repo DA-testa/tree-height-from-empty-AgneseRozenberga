@@ -2,6 +2,7 @@
 import sys
 import threading
 #import numpy as np
+import os.path
 
 def compute_height(n, parents):  
     piramida ={}
@@ -26,6 +27,8 @@ def main():
         if 'a' in filename or 'A' in filename:
             return
         if filename[0].isdigit():
+            if not os.path.exists(filename):
+                return
             with open(filename, 'r', encoding='utf-8') as file:
                 n = int(file.readline().strip())
                 parents = list(map(int, file.readline().strip().split()))
@@ -34,6 +37,8 @@ def main():
             parents = list(map(int, input().split()))
         print(compute_height(n,parents))
     except EOFError:
+        return 1
+    except Exception as ex:
         return 1
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
