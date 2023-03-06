@@ -24,7 +24,7 @@ def compute_height(n, parents):
 def main():
     try:
         veids = input
-        if veids.upper() == 'F':
+        if veids == 'F':
             filename = input()
             
             if 'a' in filename or 'A' in filename:
@@ -35,14 +35,17 @@ def main():
                 with open(filename, 'r', encoding='utf-8') as file:
                     n = int(file.readline().strip())
                     parents = list(map(int, file.readline().strip().split()))
-        elif veids.upper() == 'I':
-            n = int(input())
-            parents = list(map(int, input().split()))
-        print(compute_height(n,parents))
+        elif veids == 'I':
+                n = int(input())
+                parents = list(map(int, input().split()))
+        else:
+            return
         if n < 1 or n > 105:
             return
         if any(p < -1 or p >= n for p in parents):
             return
+        print(compute_height(n,parents))
+
     except EOFError:
         return 1
 
