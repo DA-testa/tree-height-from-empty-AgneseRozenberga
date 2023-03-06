@@ -38,14 +38,11 @@ def main():
         elif veids.upper() == 'I':
             n = int(input())
             parents = list(map(int, input().split()))
-        else:
-            return
+        print(compute_height(n,parents))
         if n < 1 or n > 105:
             return
         if any(p < -1 or p >= n for p in parents):
             return
-        print(compute_height(n,parents))
-
     except EOFError:
         return 1
 
