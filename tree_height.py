@@ -34,7 +34,7 @@ def main():
                 n = int(file.readline().strip())
                 parents = list(map(int, file.readline().strip().split()))
         else:
-            n = int(input())
+            n = int(input().split())
             parents = list(map(int, input().split()))
         print(compute_height(n,parents))
         if n < 1 or n > 105:
