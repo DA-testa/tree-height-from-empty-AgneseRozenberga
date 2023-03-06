@@ -24,7 +24,7 @@ def compute_height(n, parents):
 def main():
     try:
         filename = input()
-        n = input()
+        
         if 'a' in filename or 'A' in filename:
             return
         if filename[0].isdigit():
