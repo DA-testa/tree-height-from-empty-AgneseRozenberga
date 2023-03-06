@@ -24,6 +24,7 @@ def compute_height(n, parents):
 def main():
     try:
         filename = input()
+        
         if 'a' in filename or 'A' in filename:
             return
         if filename[0].isdigit():
@@ -37,6 +38,8 @@ def main():
             parents = list(map(int, input().split()))
         print(compute_height(n,parents))
         if n < 1 or n > 105:
+            return
+        if any(p < -1 or p >= n for p in parents):
             return
     except EOFError:
         return 1
