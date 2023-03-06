@@ -7,41 +7,41 @@ import os.path
 def compute_height(n, parents):  
     piramida ={}
     for x in range(n):
-        piramida[x] = []
-
-    for x in range (n):
-        parent = parents[x]
-        if parent == -1:
+        if parents[x] == -1:
             root = x
         else:
-            piramida[parent].append(x)
+            if parents[x] not in piramida:
+                piramida[parents[x]] = []
+            piramida[parents[x]].append(x)
+
     def augstums(nodes):
-        if not piramida[nodes]:
+        if nodes not in piramida:
             return 1
-        return 1 + max(augstums(pamats) for pamats in piramida[nodes])
+        else:
+            return 1 + max(augstums(pamats) for pamats in piramida[nodes])
     return augstums(root)
 
 def main():
     try:
-        veids = input().upper()
-        if veids == 'F':
-            filename = input()
-            if 'a' in filename or 'A' in filename:
+        
+        filename = input()
+        
+        if 'a' in filename or 'A' in filename:
+            return
+        if filename[0].isdigit():
+            if not os.path.exists(filename):
                 return
-            if filename[0].isdigit():
-                if not os.path.exists(filename):
-                    return
-                with open(filename, 'r', encoding='utf-8') as file:
-                    n = int(file.readline().strip())
-                    parents = list(map(int, file.readline().strip().split()))
-        elif veids == 'I':
+            with open(filename, 'r', encoding='utf-8') as file:
+                n = int(file.readline().strip())
+                parents = list(map(int, file.readline().strip().split()))
+        else:
             n = int(input())
             parents = list(map(int, input().split()))
+        print(compute_height(n,parents))
         if n < 1 or n > 105:
             return
         if any(p < -1 or p >= n for p in parents):
             return
-        print(compute_height(n,parents))
     except EOFError:
         return 1
 
